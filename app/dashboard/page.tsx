@@ -131,8 +131,8 @@ export default function DashboardPage() {
                 <CardTitle>Quick Actions</CardTitle>
             </CardHeader>
             <CardContent className="flex gap-4">
-                <Button asChild><Link href="/leave">Request Leave</Link></Button>
-                <Button variant="outline" asChild><Link href="/profile">View Profile</Link></Button>
+                <Button asChild><Link href="/dashboard/leave">Request Leave</Link></Button>
+                <Button variant="outline" asChild><Link href="/dashboard/profile">View Profile</Link></Button>
             </CardContent>
         </Card>
         <Card>

@@ -19,7 +19,7 @@ export default async function DashboardLayout({
 
   // Protect the dashboard routes. If no session, redirect to login.
   if (!session?.user) {
-    redirect("/login");
+    redirect("/");
   }
 
   return (

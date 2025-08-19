@@ -26,12 +26,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Calendar } from "@/components/ui/calendar";
+// Import react-calendar and its styles
+// You'll need to install it: npm install react-calendar
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
+import { useState } from "react";
 
 // --- Validation Schema using Zod ---
 const formSchema = z.object({
@@ -44,6 +48,7 @@ const formSchema = z.object({
 
 export default function RegisterPage() {
   const router = useRouter();
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   // --- Form Hook Initialization ---
   const form = useForm<z.infer<typeof formSchema>>({
@@ -129,7 +134,7 @@ export default function RegisterPage() {
               render={({ field }) => (
                 <FormItem className="flex flex-col">
                   <FormLabel>Date of birth</FormLabel>
-                  <Popover>
+                  <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
                     <PopoverTrigger asChild>
                       <FormControl>
                         <Button
@@ -151,13 +156,14 @@ export default function RegisterPage() {
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0" align="start">
                       <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={field.onChange}
-                        disabled={(date) =>
-                          date > new Date() || date < new Date("1900-01-01")
-                        }
-                        initialFocus
+                        onChange={(date) => {
+                          field.onChange(date);
+                          setIsCalendarOpen(false); // Close calendar on date selection
+                        }}
+                        value={field.value}
+                        maxDate={new Date()}
+                        minDate={new Date("1960-01-01")}
+                        className="p-2"
                       />
                     </PopoverContent>
                   </Popover>

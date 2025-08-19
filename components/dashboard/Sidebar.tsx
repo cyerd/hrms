@@ -14,12 +14,12 @@ import { cn } from "@/lib/utils";
 const navLinks = {
   employee: [
     { href: "/", label: "Dashboard", icon: Home },
-    { href: "/leave", label: "Leave Request", icon: Calendar },
-    { href: "/profile", label: "Profile", icon: User },
+    { href: "/dashboard/leave", label: "Leave Request", icon: Calendar },
+    { href: "/dashboard/profile", label: "Profile", icon: User },
   ],
   admin: [
-    { href: "/admin/hr/manage-users", label: "Manage Users", icon: Users },
-    { href: "/admin/hr/manage-requests", label: "Manage Requests", icon: FileText },
+    { href: "/hr/manage-users", label: "Manage Users", icon: Users },
+    { href: "/hr/manage-requests", label: "Manage Requests", icon: FileText },
   ],
 };
 
