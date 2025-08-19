@@ -28,7 +28,7 @@ export async function POST(req: Request) {
         resetPasswordToken: hashedToken,
         resetPasswordTokenExpiry: {
           // 'gt' means "greater than" the current time
-          gt: new Date(), 
+          gt: new Date(),
         },
       },
     });
